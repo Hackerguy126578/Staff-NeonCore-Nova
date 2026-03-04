@@ -6,15 +6,15 @@ export const authOptions = {
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
-      authorization: { params: { scope: "identify email guilds" } }
-    })
+      authorization: { params: { scope: "identify email guilds" } },
+    }),
   ],
   callbacks: {
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       session.user.id = token.sub;
       return session;
-    }
-  }
+    },
+  },
 };
 
 export default NextAuth(authOptions);
